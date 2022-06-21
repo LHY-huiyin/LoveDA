@@ -24,8 +24,8 @@
 import os
 import cv2 as cv
 
-image_path = 'G:/LoveDA/JPEGImages1/'
-save_path = 'G:/LoveDA/JPEGImages/'
+image_path = 'G:\\LoveDA\\Val\\Urban\\images_png\\'
+save_path = 'G:\\LoveDA\\Val\\Urban\\images_jpg\\'
 
 if not os.path.exists(save_path):
     os.makedirs(save_path)
