@@ -18,32 +18,26 @@ for name in file_flags:
     min_i = min(image_rgb.shape[0], image_label.shape[0])
     min_j = min(image_rgb.shape[1], image_label.shape[1])
     aim = 600
-    gap_i = min_i // aim
-    gap_j = min_j // aim
-    for i in range(gap_i):  # [600, 600, 3]
-        for j in range(gap_j):
-            # if i == 0 or j == 0:
-            #     if i == 9:  # j==0
-            #         img_rgb = image_rgb[image_rgb.shape[0] - size_of_split: image_rgb.shape[0], aim * j: size_of_split + aim * j, :]
-            #         img_label = image_label[image_label.shape[0] - size_of_split: image_label.shape[0], aim * j: size_of_split + aim * j, :]
-            #     elif j == 9:  # i==0
-            #         img_rgb = image_rgb[aim * i: size_of_split + aim * i, image_rgb.shape[1] - size_of_split: image_rgb.shape[1], :]
-            #         img_label = image_label[aim * i: size_of_split + aim * i, image_label.shape[1] - size_of_split: image_label.shape[1], :]
-            #     else:  # i==0 j==0 or i==0 j==1-8  or i==1-8 j==0
-            #         img_rgb = image_rgb[aim * i: size_of_split + aim * i, aim * j: size_of_split + aim * j, :]
-            #         img_label = image_label[aim * i: size_of_split + aim * i, aim * j: size_of_split + aim * j, :]
-            if i == gap_i and j == gap_j:  # 当
+    gap_i = min_i // aim - 1
+    gap_j = min_j // aim - 1
+    for i in range(min_i // aim):  # [600, 600, 3]
+        for j in range(min_j // aim):
+            if i == gap_i and j == gap_j:  # 当i==9 j==9时，固定的尺寸大小设置
                 img_rgb = image_rgb[image_rgb.shape[0] - size_of_split: image_rgb.shape[0], image_rgb.shape[1] - size_of_split: image_rgb.shape[1], :]
                 img_label = image_label[image_label.shape[0] - size_of_split: image_label.shape[0], image_label.shape[1] - size_of_split: image_label.shape[1], :]
+                print("&&&&&", image_rgb.shape[0] - size_of_split, image_rgb.shape[0], image_rgb.shape[1] - size_of_split, image_rgb.shape[1])
             elif j == gap_j:
                 img_rgb = image_rgb[aim * i: size_of_split + aim * i, image_rgb.shape[1] - size_of_split: image_rgb.shape[1], :]
                 img_label = image_label[aim * i: size_of_split + aim * i, image_label.shape[1] - size_of_split: image_label.shape[1], :]
+                print("&&&&&", aim * i, size_of_split + aim * i, image_rgb.shape[1] - size_of_split, image_rgb.shape[1])
             elif i == gap_i:
                 img_rgb = image_rgb[image_rgb.shape[0] - size_of_split: image_rgb.shape[0], aim * j: size_of_split + aim * j, :]
                 img_label = image_label[image_label.shape[0] - size_of_split: image_label.shape[0], aim * j: size_of_split + aim * j, :]
+                print("&&&&&", image_rgb.shape[0] - size_of_split, image_rgb.shape[0], aim * j, size_of_split + aim * j)
             else:
                 img_rgb = image_rgb[aim * i: size_of_split + aim * i, aim * j: size_of_split + aim * j, :]
                 img_label = image_label[aim * i: size_of_split + aim * i, aim * j: size_of_split + aim * j, :]
+                print("&&&&&", aim * i, size_of_split + aim * i, aim * j, size_of_split + aim * j)
             cv2.imwrite('H:/datasets/Vovpotsdam/Val/image/' + 'v' + str(num) + '.jpg', img_rgb)
             cv2.imwrite('H:/datasets/Vovpotsdam/Val/mask_vis/' + 'v' + str(num) + '.png', img_label)
             print(num, img_rgb.shape)
