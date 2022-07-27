@@ -22,6 +22,7 @@ def render(mask_path, vis_path):
 
 
 if __name__ == '__main__':
+    # 对增强后的图片进行查看，将mask上色
     mask_root = r'H:\\datasets\\Vovpotsdam\\Val\\mask_aug\\'
     vis_root = r'H:\\datasets\\Vovpotsdam\\Val\\colorverified\\'
     for name in os.listdir(mask_root):
