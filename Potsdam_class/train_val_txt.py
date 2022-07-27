@@ -15,7 +15,7 @@ def to_text(src, dst1):
 
 
 if __name__ == "__main__":
-    train_path = r'H:\\datasets\\Vovpotsdam\\Train\\image'
+    train_path = r'H:\\datasets\\Vovpotsdam\\Train\\image_aug'
     val_path = r'H:\\datasets\\Vovpotsdam\\Val\\image'
 
     dst_train = r'H:\\datasets\\Vovpotsdam\\ImageSets\\Segmentation\\train.txt'
